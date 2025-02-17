@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>180-Day Transformation Journey</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    padding: 15px;
+    text-align: center;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.day:hover {
+    background-color: #2980b9;
+}
+
+.day.disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+        </style>
+</head>
+<body>
+    <div class="container">
+        <h1>180-Day Transformation Journey</h1>
+        <div id="calendar"></div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    const calendar = document.getElementById('calendar');
+    const startDate = new Date(2025, 1, 17); // February 17, 2025
+    const totalDays = 180;
+
+    // Create days from 1 to 180
+    for (let day = 1; day <= totalDays; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('day');
+        dayElement.textContent = day;
+
+        // Calculate the date for the current day
+        const currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + day - 1);
+
+        // Add a tooltip to show the actual date
+        dayElement.title = currentDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+
+        // Disable the day when clicked
+        dayElement.addEventListener('click', function () {
+            if (!dayElement.classList.contains('disabled')) {
+                dayElement.classList.add('disabled');
+                alert(`Day ${day} (${currentDate.toLocaleDateString()}) is disabled. Stay strong on your journey!`);
+            }
+        });
+
+        calendar.appendChild(dayElement);
+    }
+});
+    </script>
+</body>
+</html>

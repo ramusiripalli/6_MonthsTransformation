@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Transformation Journey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .goal-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .goal {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .goal:hover {
+            transform: scale(1.05);
+        }
+        .goal h2 {
+            font-size: 1.5em;
+        }
+        .progress-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress {
+            height: 10px;
+            background: yellow;
+            width: 0%;
+        }
+        .log-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 My Transformation Journey 🚀</h1>
+    <p>Tracking my progress and staying committed!</p>
+    <div class="goal-container" id="goals"></div>
+    
+    <script>
+        const goals = [
+            { name: "Complete Full MERN Stack Course", progress: 0 },
+            { name: "Complete DSA Striver (Leetcode, CodeChef)", progress: 0 },
+            { name: "Lose 13 Kgs (80kg) - Daily 200 pushups, 50 pullups, 1000 skipping", progress: 0 },
+            { name: "Healthier Food & Diet", progress: 0 },
+            { name: "Daily Early Morning Wakeup at 4:10 AM", progress: 0 },
+            { name: "Daily 10 Pages a Book, Complete 6 Books", progress: 0 },
+            { name: "Spend 30 Minutes Learning Spoken English", progress: 0 },
+            { name: "Write Journal Daily, Affirmations & Gratitude", progress: 0 },
+            { name: "Track Progress and Stay Accountable", progress: 0 }
+        ];
+
+        function renderGoals() {
+            const goalContainer = document.getElementById('goals');
+            goalContainer.innerHTML = '';
+            goals.forEach((goal, index) => {
+                const goalDiv = document.createElement('div');
+                goalDiv.classList.add('goal');
+                goalDiv.innerHTML = `
+                    <h2>${goal.name}</h2>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-${index}"></div>
+                    </div>
+                    <button onclick="updateProgress(${index})">Increase Progress</button>
+                `;
+                goalContainer.appendChild(goalDiv);
+            });
+        }
+
+        function updateProgress(index) {
+            if (goals[index].progress < 100) {
+                goals[index].progress += 10;
+                document.getElementById(`progress-${index}`).style.width = goals[index].progress + '%';
+            }
+        }
+
+       
+
+        renderGoals();
+    </script>
+</body>
+</html>
